@@ -91,5 +91,5 @@ JOIN obra_de_arte_artista AS oa ON o.id = oa.obra_arte_id
 JOIN artista AS a ON oa.artista_id = a.id
 GROUP BY o.titulo
 	
-
-
+-------------------------------ALTERAR TIPO DA COLUNA----------------
+ALTER TABLE nome_tabela ALTER COLUMN nom_colula TYPE ......
