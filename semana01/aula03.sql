@@ -58,6 +58,10 @@ CREATE TABLE manutencao (
 	veiculos_id INTEGER NOT NULL,
 	FOREIGN KEY (veiculos_id) REFERENCES veiculos(id)ON DELETE CASCADE
 )
+ CREATE TYPE metodo_pagamento AS ENUM ('pix','debito','crédito','dinheiro','financiamento')
+
+ALTER TABLE vendas ALTER COLUMN metodo_pagamento SET DATA TYPE metodo_pagamento
+ USING metodo_pagamento::metodo_pagamento
 
 	
 INSERT INTO fabricantes (nome,pais_origem,ano_fundacao) VALUES ('JOAO','BRASIL','2015');	
@@ -78,3 +82,18 @@ INSERT INTO vendedores (nome,cpf,email,telefone,data_contratacao) VALUES ('JUJU'
 INSERT INTO vendedores (nome,cpf,email,telefone,data_contratacao) VALUES ('GIGI','000.000.000-08','GIGI@HOTMAIL.COM','3263-0044','10-10-2008');
 INSERT INTO vendedores (nome,cpf,email,telefone,data_contratacao) VALUES ('PAPA','000.000.000-09','PAPA@HOTMAIL.COM','3263-0055','05-12-2000');
 INSERT INTO vendedores (nome,cpf,email,telefone,data_contratacao) VALUES ('BOBO','000.000.000-10','BOBO@HOTMAIL.COM','3263-0066','08-12-2011');
+
+INSERT INTO veiculos (chassi, modelo, ano_fabricacao, cor, quilometragem, preco,fabricante_id)
+VALUES ('1231233ABC', 'CORSA', 2010, 'BRANCO', 60000, 10500, '1');
+
+INSERT INTO veiculos (chassi, modelo, ano_fabricacao, cor, quilometragem, preco,fabricante_id)
+VALUES ('1231233AAA', 'GOL', 2015, 'PRETO', 30000, 18500, '4');
+
+INSERT INTO veiculos (chassi, modelo, ano_fabricacao, cor, quilometragem, preco,fabricante_id)
+VALUES ('1231244BBB', 'PUNTO', 2016, 'VERMELHO', 28000, 20000, '3');
+
+INSERT INTO veiculos (chassi, modelo, ano_fabricacao, cor, quilometragem, preco,fabricante_id)
+VALUES ('1231233CCC', 'PRISMA', 2011, 'BRANCO', 20000, 10500, '2');
+
+INSERT INTO veiculos (chassi, modelo, ano_fabricacao, cor, quilometragem, preco,fabricante_id)
+VALUES ('1231233DDD', 'ONIX', 2017, 'VERMELHO', 42000, 91500, '4');

@@ -41,7 +41,7 @@ ALTER TABLE obra_de_arte ADD COLUMN type tipo_de_arte
  
  CREATE TYPE tipo_de_arte AS ENUM ('PINTURAS','ESCULTURAS')
 
--- alterar coluna da tabela
+	-- alterar coluna da tabela
 
 ALTER TABLE artista RENAME COLUMN descrição_biográfica to descricao_biografica
 
@@ -93,3 +93,82 @@ GROUP BY o.titulo
 	
 -------------------------------ALTERAR TIPO DA COLUNA----------------
 ALTER TABLE nome_tabela ALTER COLUMN nom_colula TYPE ......
+
+
+--------------------------FORÇAR TROCA DE TYPO-----------------
+ ALTER TABLE vendas ALTER COLUMN metodo_pagamento SET DATA TYPE metodo_pagamento
+ USING metodo_pagamento::metodo_pagamento
+
+ ----------------------ALTERAR TYPO ---------------------
+ ALTER TABLE veiculos ALTER COLUMN chassi type VARCHAR (100)
+
+ ----------------------pegar o valor maximo da tabela----------
+ ALTER TABLE veiculos ALTER COLUMN chassi type VARCHAR (100)
+
+ -----------------------pegar o valor menor da tabela
+ SELECT MIN(nome da coluno) FROM nome da tabela
+
+ ----------------------pegar o valor maior e menor da tabela--------
+
+ SELECT MAX (nome da coluna) MIN (nome da coluna) FROM nome da tabela
+
+ --------------------pegar o opcao por valor-----------------------
+ SELECT * FROM nome da tabela WHERE  NOME DA COLUNA  valor
+
+----------------------------PEGAR MEDIA----------------------------
+
+SELECT AVG (quilometragem) FROM veiculos
+----------------------PEGAR MEDIA E COLOCA APELIDO-----------
+SELECT AVG (quilometragem) AS MEDIA_QUILOMETRAGEM FROM veiculos;
+----- AVG 
+
+---------------------------pega media porem só duas casa depois da virgula
+SELECT ROUND (AVG(quilometragem),2) FROM veiculos
+
+--------------------------------pega a soma da coluna-------------------
+SELECT SUM(preco) FROM veiculos
+
+--------------------pegar media e escolher quantos numeros depois da virgula---
+SELECT ROUND(AVG(preco),1) FROM  veiculos
+----ROUND siginifcado de "ARRENDONDAR"
+
+------------------ pega a soma usando apenas só  o valor passado-----------
+SELECT SUM(preco) FROM veiculos WHERE ano_fabricacao < 2010
+SELECT SUM(preco) FROM veiculos WHERE cor = 'branco'
+----SUM  significado "somar"
+
+-------------------------------- buscar uma somar entrer datas----------------
+SELECT SUM(valor_total) FROM vendas WHERE data_vendas BETWEEN '2020-01-01' AND '2024-11-07'
+----- BETWEEN siginificado  "entre"
+
+
+--------------------- mostra tabela em forma ordernada---------------------------
+---CRESCENTE  MAIOR PARA O MENOR
+SELECT * FROM vendas ORDER BY  valor_total ASC
+---DESCRECENTE  MENOR PARA O MAIOR
+SELECT * FROM vendas ORDER BY valor_total DESC
+--- ORDER BY  siginificador ""ordernar"
+
+
+---------------------- AGRUPAR CAMPOS -----------------
+SELECT metodo_pagamento, COUNT(id) FROM vendas GROUP by metodo_pagamento
+----GROUP BY significado agrupar
+
+------------ PROCURAR ALGO POR UMA PARTE------------ 
+SELECT * FROM clientes WHERE nome LIKE 'joao%'
+---- % significa "qualquer coisa" 
+
+----------PROCURAR POR QUANTIDADE DE CARACTERES
+SELECT * FROM veiculos WHERE modelo LIKE '-----'
+---- '-' <<<< numero de caracteres
+
+---------procurar por quantidade de caracteres
+SELECT * FROM veiculos WHERE modelo LIKE '--R%'
+
+------------usar alteraçao para tudo minusculos
+SELECT * FROM veiculos WHERE lower(modelo) LIKE '--r%'
+SELECT * FROM veiculos WHERE modelo ILIKE '--r%'
+
+
+
+
